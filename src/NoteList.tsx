@@ -7,8 +7,7 @@ import {
   Form,
   Card,
   Badge,
-  Modal,
-  CloseButton,
+  Modal
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ReactSelect from "react-select";
@@ -179,6 +178,8 @@ function EditTagsModal({
   availableTags,
   handleClose,
   show,
+  onDeleteTag,
+  onUpdateTag
 }: EditTagsModalProps) {
   return (
     <Modal show={show} onHide={handleClose}>
@@ -191,10 +192,11 @@ function EditTagsModal({
             {availableTags.map((tag) => (
               <Row key={tag.id}>
                 <Col>
-                  <Form.Control type="text" value={tag.label} />
+                  <Form.Control type="text" value={tag.label} onChange= {e => onUpdateTag(tag.id, e.target.value)}
+                  />
                 </Col>
                 <Col xs="auto">
-                  <Button variant="outline-danger">X</Button>
+                  <Button onClick={()=> onDeleteTag(tag.id) }variant="outline-danger">X</Button>
                 </Col>
               </Row>
             ))}
