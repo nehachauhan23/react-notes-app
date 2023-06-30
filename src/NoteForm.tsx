@@ -32,6 +32,7 @@ const NoteForm = ({ onSubmit, onAddTag, availableTags, title="", markdown="", ta
     }
 
     return (
+        <>
         <Form onSubmit={handleSubmit}>
             <Stack gap={4}>
                 <Row>
@@ -78,6 +79,7 @@ const NoteForm = ({ onSubmit, onAddTag, availableTags, title="", markdown="", ta
                 </Stack>
             </Stack>  
         </Form>
+        </>
     )
 }
 

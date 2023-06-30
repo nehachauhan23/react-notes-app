@@ -5,6 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NoteForm from "./NoteForm"
 import { Row, Col } from 'react-bootstrap';
 import { NoteData, Tag } from './App';
+import NavbarComponent from './Navbar';
 
 type NewNoteProps = { 
   onSubmit: (data: NoteData) => void
@@ -15,16 +16,7 @@ type NewNoteProps = {
 export const NewNote = ( { onSubmit, onAddTag, availableTags }: NewNoteProps ) => {
   return (
     <>
-    <Navbar bg="primary" data-bs-theme="dark">
-      <Container>
-        <Navbar.Brand href="#home">Notes App</Navbar.Brand>
-        <Nav className="me-auto">
-          <Nav.Link href="#home">Add New Note </Nav.Link>
-          <Nav.Link href="#features"></Nav.Link>
-          <Nav.Link href="#pricing"></Nav.Link>
-        </Nav>
-      </Container>
-    </Navbar>
+   <NavbarComponent />
     <div className="mx-2 mt-5 p-4 border">
       <Row className=''>
         <Col>        

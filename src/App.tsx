@@ -63,21 +63,42 @@ function App() {
       
     })
   }
-
+  function onDeleteNote(id: string){
+    setNotes(prevNotes => {
+      return prevNotes.filter(note => note.id !== id)
+    })
+  }
   function addTag(tag: Tag){
     setTags(prev => [...prev, tag])
+  }
+
+  function updateTag( id: string , label:string){
+      setTags(prevTags => {
+        return prevTags.map(tag => {
+          if(tag.id === id){
+            return { ...tag, label}
+          }else{
+            return tag
+          }
+        })
+      })
+  }
+  function deleteTag(id: string, label:string){
+    setNotes(prevTags => {
+      return prevTags.filter(tag => tag.id !== id)
+    })
   }
   return (
     <>
     <Container className='p-0' fluid >
       <Routes>
-          <Route path='/' element={<NoteList notes={notesWithTags} availableTags={tags}/>} /> 
+          <Route path='/' element={<NoteList notes={notesWithTags} availableTags={tags} updateTag={updateTag} deleteTag={deleteTag} />} /> 
 
           <Route path='/new' element={<NewNote onSubmit={onCreateNote}onAddTag={addTag} availableTags={tags} />} />
 
           <Route path='/:id' element={<NoteLayout notes={notesWithTags} />}>
-            <Route index element={<Note />}></Route>
-            <Route path="edit" element={<EditNote onSubmit={onUpdateNote}onAddTag={addTag} availableTags={tags} />}></Route>
+            <Route index element={<Note onDelete={onDeleteNote} />}></Route>
+            <Route path="edit" element={<EditNote onSubmit={onUpdateNote} onAddTag={addTag} availableTags={tags} title={''} markdown={''} tags={[]} />}></Route>
           </Route>
           <Route path='*' element={<Navigate to="/" /> } />
         </Routes>

@@ -1,12 +1,10 @@
 
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+
 import NoteForm from "./NoteForm"
 import { Row, Col } from 'react-bootstrap';
 import { NoteData, Tag } from './App';
 import { useNote } from './NoteLayout';
-
+import NavbarComponent from "./Navbar";
 
 type EditNoteProps = { 
   onSubmit: (id: string, data: NoteData) => void
@@ -19,16 +17,7 @@ export const EditNote = ( { onSubmit, onAddTag, availableTags }: EditNoteProps )
     const note = useNote()
   return (
     <>
-    <Navbar bg="primary" data-bs-theme="dark">
-      <Container>
-        <Navbar.Brand href="#home">Notes App</Navbar.Brand>
-        <Nav className="me-auto">
-          <Nav.Link href="#home">Add New Note </Nav.Link>
-          <Nav.Link href="#features"></Nav.Link>
-          <Nav.Link href="#pricing"></Nav.Link>
-        </Nav>
-      </Container>
-    </Navbar>
+    <NavbarComponent />
     <div className="mx-2 mt-5 p-4 border">
       <Row className=''>
         <Col>        
